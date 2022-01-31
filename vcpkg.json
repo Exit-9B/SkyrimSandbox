@@ -1,0 +1,20 @@
+{
+  "name": "skyrimsandbox",
+  "version": "1",
+  "description": "Real-time game editor for Skyrim",
+  "homepage": "https://github.com/Exit-9B/SkyrimSandbox",
+  "license": "MIT",
+  "dependencies": [
+    "boost-stl-interfaces",
+    "rsm-binary-io",
+    "spdlog",
+    "minhook",
+    {
+      "name": "imgui",
+      "features": [
+        "dx11-binding",
+        "win32-binding"
+      ]
+    }
+  ]
+}
