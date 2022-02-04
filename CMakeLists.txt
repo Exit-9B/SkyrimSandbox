@@ -16,18 +16,17 @@ endif()
 get_filename_component(
 	Skyrim64Path
 	"[HKEY_LOCAL_MACHINE\\SOFTWARE\\WOW6432Node\\Bethesda Softworks\\Skyrim Special Edition;installed path]"
-	ABSOLUTE CACHE)
+	ABSOLUTE CACHE
+)
 
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 	set(CMAKE_INSTALL_PREFIX "${Skyrim64Path}/Data" CACHE PATH
-		"Install path prefix, prepended onto install directories."
+		"Install path prefix (e.g. Skyrim Data directory or Mod Organizer virtual directory)."
 		FORCE)
 endif()
 
-option(COPY_OUTPUT "Copy the build output to the Skyrim directory." OFF)
-
-if(COPY_OUTPUT)
-	set(CMAKE_VS_INCLUDE_INSTALL_TO_DEFAULT_BUILD ON)
+if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
+	option(CMAKE_VS_INCLUDE_INSTALL_TO_DEFAULT_BUILD "Include INSTALL target to default build." OFF)
 endif()
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
@@ -67,7 +66,8 @@ target_sources(
 target_precompile_headers(
 	"${PROJECT_NAME}"
 	PRIVATE
-		src/PCH/PCH.h)
+		src/PCH/PCH.h
+)
 
 target_include_directories(
 	"${PROJECT_NAME}"
@@ -122,5 +122,5 @@ install(
 	FILES
 		"$<TARGET_FILE:${PROJECT_NAME}>"
 		"$<TARGET_PDB_FILE:${PROJECT_NAME}>"
-	DESTINATION ${CMAKE_INSTALL_PREFIX}/SKSE/Plugins
+	DESTINATION "SKSE/Plugins"
 )
