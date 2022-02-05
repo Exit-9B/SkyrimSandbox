@@ -4,6 +4,7 @@
 #include "Sandbox/Message.h"
 #include "Sandbox/Modules/FormEditor.h"
 #include "Sandbox/Modules/ObjectWindow.h"
+#include "Sandbox/Modules/ScriptExplorer.h"
 
 namespace Sandbox::Modules
 {
@@ -20,6 +21,8 @@ namespace Sandbox::Modules
 			for (auto& formType : FormEditor::SupportedFormTypes) {
 				api->AddFormEditor(formType, Plugin::NAME.data());
 			}
+
+			api->Register(ScriptExplorer::GetSingleton());
 		} break;
 
 		case Message::kEditForm:
