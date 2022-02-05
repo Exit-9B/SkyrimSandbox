@@ -18,7 +18,7 @@ namespace Sandbox::Modules
 
 			api->Register(FormEditor::GetSingleton());
 			for (auto& formType : FormEditor::SupportedFormTypes) {
-				api->AddFormEditor(static_cast<std::int32_t>(formType), Plugin::NAME.data());
+				api->AddFormEditor(formType, Plugin::NAME.data());
 			}
 		} break;
 
