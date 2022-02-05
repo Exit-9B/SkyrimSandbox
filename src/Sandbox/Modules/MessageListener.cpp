@@ -2,6 +2,7 @@
 
 #include "Sandbox/FunctionInterface.h"
 #include "Sandbox/Message.h"
+#include "Sandbox/Modules/CellView.h"
 #include "Sandbox/Modules/FormEditor.h"
 #include "Sandbox/Modules/ObjectWindow.h"
 
@@ -20,6 +21,8 @@ namespace Sandbox::Modules
 			for (auto& formType : FormEditor::SupportedFormTypes) {
 				api->AddFormEditor(static_cast<std::int32_t>(formType), Plugin::NAME.data());
 			}
+
+			api->Register(CellView::GetSingleton());
 		} break;
 
 		case Message::kEditForm:
