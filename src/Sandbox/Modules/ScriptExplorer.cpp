@@ -40,7 +40,7 @@ namespace Sandbox::Modules
 							auto form = static_cast<RE::TESForm*>(script->Resolve(0));
 							auto alias = static_cast<RE::BGSBaseAlias*>(
 								script->Resolve(RE::BGSBaseAlias::VMTYPEID));
-							[[maybe_unused]] auto effect = static_cast<RE::ActiveEffect*>(
+							auto effect = static_cast<RE::ActiveEffect*>(
 								script->Resolve(RE::ActiveEffect::VMTYPEID));
 							auto scriptName = script->GetTypeInfo()->GetName();
 
@@ -70,6 +70,10 @@ namespace Sandbox::Modules
 								auto aliasName = alias->aliasName.data();
 								auto questID = idHandler->GetEditorID(alias->owningQuest);
 								ImGui::Text("Alias: %s (Quest: %s)", aliasName, questID);
+							}
+							else if (effect) {
+								auto effectID = idHandler->GetEditorID(effect->GetBaseObject());
+								ImGui::Text("Effect: %s", effectID);
 							}
 						}
 					}
