@@ -11,7 +11,7 @@ namespace Sandbox
 	class IModule : public IModuleBase
 	{
 	public:
-		virtual ~IModule() = default;
+		virtual ~IModule() { }
 
 		virtual void ShowGUI() = 0;
 	};

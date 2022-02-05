@@ -6,6 +6,7 @@ namespace Sandbox
 	{
 	public:
 		IModuleBase() : APIVersion(1) { }
+		virtual ~IModuleBase() { }
 		std::int32_t GetAPIVersion() const { return APIVersion; }
 
 	private:
